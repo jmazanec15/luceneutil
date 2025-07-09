@@ -52,15 +52,15 @@ PARAMS = {
   #'ndoc': (10000, 100000, 200000, 500000),
   #'ndoc': (2_000_000,),
   #'ndoc': (1_000_000,),
-  "ndoc": (500_000,),
-  #'ndoc': (50_000,),
-  "maxConn": (32, 64, 96),
+#   "ndoc": (500_000,),
+  'ndoc': (150_000,),
+  "maxConn": (32,),
   # "maxConn": (64,),
   #'maxConn': (32,),
-  "beamWidthIndex": (250, 500),
+  "beamWidthIndex": (250,),
   # "beamWidthIndex": (250,),
   #'beamWidthIndex': (50,),
-  "fanout": (20, 50, 100, 250),
+  "fanout": (50,),
   # "fanout": (50,),
   #'quantize': None,
   #'quantizeBits': (32, 7, 4),
@@ -74,20 +74,20 @@ PARAMS = {
   # 'metric': ('mip',),
   #'quantize': (True,),
   "quantizeBits": (
-    4,
-    7,
-    32,
+    1,
+#     7,
+#     32,
   ),
   # "quantizeBits": (1,),
   # "overSample": (5,), # extra ratio of vectors to retrieve, for testing approximate scoring, e.g. quantized indices
   #'fanout': (0,),
   "topK": (100,),
-  # "bp": ("false", "true"),
+  "bp": ("false", "true"),
   #'quantizeCompress': (True, False),
   "quantizeCompress": (True,),
   # "indexType": ("flat", "hnsw"), # index type, only works with singlt bit
   "queryStartIndex": (0,),  # seek to this start vector before searching, to sample different vectors
-  # "forceMerge": (True, False),
+  "forceMerge": (True,),
   #'niter': (10,),
 }
 
@@ -138,9 +138,9 @@ def run_knn_benchmark(checkout, values):
   # dim = 100
   # doc_vectors = constants.GLOVE_VECTOR_DOCS_FILE
   # query_vectors = '%s/luceneutil/tasks/vector-task-100d.vec' % constants.BASE_DIR
-  # dim = 768
-  # doc_vectors = '/lucenedata/enwiki/enwiki-20120502-lines-1k-mpnet.vec'
-  # query_vectors = '/lucenedata/enwiki/enwiki-20120502.mpnet.vec'
+  dim = 768
+  doc_vectors = '/Users/jmazane/workspace/Opensearch/data/random_150k_768d_fp32.vec'
+  query_vectors = '/Users/jmazane/workspace/Opensearch/data/random_10k_768d_fp32.vec'
   # dim = 384
   # doc_vectors = '%s/data/enwiki-20120502-lines-1k-minilm.vec' % constants.BASE_DIR
   # query_vectors = '%s/luceneutil/tasks/vector-task-minilm.vec' % constants.BASE_DIR
@@ -153,9 +153,9 @@ def run_knn_benchmark(checkout, values):
   # query_vectors = '/d/electronics_query_vectors.bin'
 
   # Cohere dataset
-  dim = 768
-  doc_vectors = f"{constants.BASE_DIR}/data/cohere-wikipedia-docs-{dim}d.vec"
-  query_vectors = f"{constants.BASE_DIR}/data/cohere-wikipedia-queries-{dim}d.vec"
+#   dim = 768
+#   doc_vectors = f"{constants.BASE_DIR}/data/cohere-wikipedia-docs-{dim}d.vec"
+#   query_vectors = f"{constants.BASE_DIR}/data/cohere-wikipedia-queries-{dim}d.vec"
   # doc_vectors = f"/lucenedata/enwiki/{'cohere-wikipedia'}-docs-{dim}d.vec"
   # query_vectors = f"/lucenedata/enwiki/{'cohere-wikipedia'}-queries-{dim}d.vec"
   # parentJoin_meta_file = f"{constants.BASE_DIR}/data/{'cohere-wikipedia'}-metadata.csv"

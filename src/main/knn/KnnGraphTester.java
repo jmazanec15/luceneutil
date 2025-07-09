@@ -89,6 +89,7 @@ import org.apache.lucene.search.KnnFloatVectorQuery;
 import org.apache.lucene.search.MatchAllDocsQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.QueryVisitor;
+import org.apache.lucene.search.RescoreTopNQuery;
 import org.apache.lucene.search.ScoreMode;
 import org.apache.lucene.search.Scorer;
 import org.apache.lucene.search.ScorerSupplier;
@@ -1007,11 +1008,13 @@ public class KnnGraphTester {
       TopDocs topDocs = searcher.search(parentJoinQuery, k);
       return new Result(topDocs, 0, 0);
     }
-    ProfiledKnnFloatVectorQuery profiledQuery = new ProfiledKnnFloatVectorQuery(field, vector, k, fanout, prefilter ? filter : null);
+    //TODO: Lets modify to rescore
+    ProfiledKnnFloatVectorQuery profiledQuery = new ProfiledKnnFloatVectorQuery(field, vector, 5*k, fanout, prefilter ? filter : null);
     Query query = prefilter ? profiledQuery : new BooleanQuery.Builder()
             .add(profiledQuery, BooleanClause.Occur.MUST)
             .add(filter, BooleanClause.Occur.FILTER)
             .build();
+    query = RescoreTopNQuery.createFullPrecisionRescorerQuery(profiledQuery, vector, field, k);
     TopDocs docs = searcher.search(query, k);
     return new Result(docs, profiledQuery.totalVectorCount(), 0);
   }

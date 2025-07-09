@@ -53,7 +53,7 @@ PARAMS = {
   #'ndoc': (2_000_000,),
   #'ndoc': (1_000_000,),
 #   "ndoc": (500_000,),
-  'ndoc': (150_000,),
+  'ndoc': (50_000,),
   "maxConn": (32,),
   # "maxConn": (64,),
   #'maxConn': (32,),
@@ -139,8 +139,8 @@ def run_knn_benchmark(checkout, values):
   # doc_vectors = constants.GLOVE_VECTOR_DOCS_FILE
   # query_vectors = '%s/luceneutil/tasks/vector-task-100d.vec' % constants.BASE_DIR
   dim = 768
-  doc_vectors = '/Users/jmazane/workspace/Opensearch/data/random_150k_768d_fp32.vec'
-  query_vectors = '/Users/jmazane/workspace/Opensearch/data/random_10k_768d_fp32.vec'
+  doc_vectors = '/data/random-50k-768d.vec'
+  query_vectors = '/data/random-10k-768d.vec'
   # dim = 384
   # doc_vectors = '%s/data/enwiki-20120502-lines-1k-minilm.vec' % constants.BASE_DIR
   # query_vectors = '%s/luceneutil/tasks/vector-task-minilm.vec' % constants.BASE_DIR

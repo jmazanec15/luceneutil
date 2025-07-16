@@ -53,11 +53,11 @@ PARAMS = {
   #'ndoc': (2_000_000,),
   #'ndoc': (1_000_000,),
 #   "ndoc": (500_000,),
-  'ndoc': (50_000,),
-  "maxConn": (32,),
+  'ndoc': (10_000_000,),
+  "maxConn": (16,),
   # "maxConn": (64,),
   #'maxConn': (32,),
-  "beamWidthIndex": (250,),
+  "beamWidthIndex": (200,),
   # "beamWidthIndex": (250,),
   #'beamWidthIndex': (50,),
   "fanout": (50,),
@@ -71,7 +71,7 @@ PARAMS = {
   #'numMergeThread': (1,),
   "encoding": ("float32",),
   # 'metric': ('angular',),  # default is angular (dot_product)
-  # 'metric': ('mip',),
+  'metric': ('mip',),
   #'quantize': (True,),
   "quantizeBits": (
     1,
@@ -139,8 +139,11 @@ def run_knn_benchmark(checkout, values):
   # doc_vectors = constants.GLOVE_VECTOR_DOCS_FILE
   # query_vectors = '%s/luceneutil/tasks/vector-task-100d.vec' % constants.BASE_DIR
   dim = 768
-  doc_vectors = '/data/random-50k-768d.vec'
-  query_vectors = '/data/random-10k-768d.vec'
+  #   doc_vectors = '/data/random-50k-768d.vec'
+  #   query_vectors = '/data/random-10k-768d.vec'
+  dim = 768
+  doc_vectors = "/data/cohere-10m_train.vec"
+  query_vectors = "/data/cohere-10m_test.vec"
   # dim = 384
   # doc_vectors = '%s/data/enwiki-20120502-lines-1k-minilm.vec' % constants.BASE_DIR
   # query_vectors = '%s/luceneutil/tasks/vector-task-minilm.vec' % constants.BASE_DIR

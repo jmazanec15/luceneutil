@@ -44,10 +44,14 @@ task compileKnn (type: JavaCompile) {
 
 task runKnnPerfTest (type: Exec) {
     dependsOn compileKnn
+    
+    // Default values
+    def jvmSize = project.hasProperty('jvmSize') ? project.property('jvmSize') : '8g'
+    def bp = project.hasProperty('bp') ? project.property('bp') : 'true'
 
     workingDir rootProject.getRootDir()
 
-    commandLine 'python3', 'src/python/knnPerfTest.py'
+    commandLine 'python3', 'src/python/knnPerfTest.py', jvmSize, '--bp', bp
 }
 
 task extractVectorTasks (type: Copy) {

@@ -27,7 +27,7 @@ PARAMS = {
   "fanout": (256,),
   "numMergeWorker": (12,),
   "numMergeThread": (12,),
-  "numSearchThread": (0,),
+  "numSearchThread": (0,2,4,-1),
   "encoding": ("float32",),
   'metric': ('mip',),
   "topK": (100,),
@@ -88,6 +88,7 @@ def run_knn_benchmark(checkout, values):
   cmd = constants.JAVA_EXE.split(" ") + [
     f"-Xmx{args.jvm_size}",
     f"-Xms{args.jvm_size}",
+    "-XX:+AlwaysPreTouch",
     "-cp",
     cp,
     "--add-modules",
